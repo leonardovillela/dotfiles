@@ -1,19 +1,13 @@
 - defaults:
-  link:
-    relink: true
-- create:
-    - ~/dev
-- clean:
-  - '~'
+    link:
+        relink: true
+- clean: ['~']
 - link:
-  ~/.aliases.sh:
-  ~/.gitconfig:
-  ~/.hyper.js:
-  ~/.profile:
-  ~/.vimrc:
-- shell:
-  - "if [ `uname` = Darwin ]
-    then
-      source ./macos_set_defaults.sh
-    fi
-  "
+    ~/.aliases.sh:
+    ~/.gitconfig:
+    ~/.hyper.js:
+        path: hyper.js
+        force: true
+    ~/.profile:
+    ~/.vimrc:
+    ~/.vimrc:

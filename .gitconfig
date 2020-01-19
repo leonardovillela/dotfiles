@@ -1,0 +1,5 @@
+[user]
+	name = Leonardo Villela
+	email = leonardo.villela37@gmail.com
+[include]
+	path = ~/.gitconfig_local

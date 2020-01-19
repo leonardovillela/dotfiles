@@ -11,4 +11,4 @@ if [ -f ~/.profile_local ]; then
   source ~/.profile_local
 fi
 
-source ~/.alias.sh
+source ~/.aliases.sh

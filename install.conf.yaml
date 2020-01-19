@@ -1,3 +1,19 @@
-- clean: []
-- link: {}
-- shell: []
+- defaults:
+  link:
+    relink: true
+- create:
+    - ~/dev
+- clean:
+  - '~'
+- link:
+  ~/.aliases.sh:
+  ~/.gitconfig:
+  ~/.hyper.js:
+  ~/.profile:
+  ~/.vimrc:
+- shell:
+  - "if [ `uname` = Darwin ]
+    then
+      source ./macos_set_defaults.sh
+    fi
+  "

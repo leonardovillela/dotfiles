@@ -10,10 +10,8 @@
         force: true
     ~/.profile:
     ~/.vimrc:
-    ~/.vimrc:
-- shell:
-    - ["./macos.sh", "Tweak MacOS configs"]
-    - ["/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)", "Install brew"]
-    - ["chsh -s $(which zsh)", "Set zsh as default shell"]
-    - ["sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)", "Install oh-my-zsh"]
-    - ["mackup restore", "Restore mackup"]
+    ~/.zshrc:
+        path: zshrc
+        force: true
+    ~/.tool-versions:
+        path: asdf-tools-versions

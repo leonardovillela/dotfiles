@@ -1,5 +1,5 @@
 alias ggpushf="ggpush --force-with-lease"
 alias brewup="brew update; brew upgrade; brew cleanup; brew doctor"
 alias {ZSHRC, zshrc}="$EDITOR ~/.zshrc"
-alias .df="git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME/.dotfiles"
-alias .dfl="git --git-dir=$HOME/.dotfiles_local/.git --work-tree=$HOME/.dotfiles_local"
+alias .df="git --git-dir=$HOME/dev/dotfiles/.git --work-tree=$HOME/dev/dotfiles"
+alias .dfl="git --git-dir=$HOME/dev/dotfiles_local/.git --work-tree=$HOME/dev/dotfiles_local"

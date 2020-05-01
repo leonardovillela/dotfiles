@@ -1,7 +1,6 @@
 tap 'homebrew/cask'
 tap 'homebrew/cask-fonts'
 
-# Core dependencies for Apps
 brew 'coreutils'
 brew 'gpg'
 brew 'automake'
@@ -14,8 +13,6 @@ brew 'libtool'
 brew 'unixodbc'
 brew 'unzip'
 brew 'curl'
-
-# Apps / Simple Binaries
 brew 'asdf'
 brew 'autojump'
 cask 'visual-studio-code'
@@ -33,3 +30,7 @@ cask 'font-fira-code'
 cask 'discord'
 cask 'spectacle'
 cask 'notion'
+cask 'alfred'
+brew 'mas' # Mac App Store manager
+mas 'Todoist: To-Do List & Tasks', id: 585829637
+mas 'Be Focused - Focus Timer', id: 973134470

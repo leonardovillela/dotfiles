@@ -101,3 +101,4 @@ source $ZSH/oh-my-zsh.sh
 autoload -U add-zsh-hook
 
 source ~/.profile
+autoload -Uz compinit && compinit -i

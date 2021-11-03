@@ -1,17 +1,20 @@
 - defaults:
     link:
         relink: true
+    shell:
+        stderr: true
+        stdout: true
+        stdin: true
 - clean: ['~']
 - link:
     ~/.aliases.sh:
     ~/.gitconfig:
-    ~/.hyper.js:
-        path: hyper.js
-        force: true
     ~/.profile:
-    ~/.vimrc:
     ~/.zshrc:
         path: zshrc
         force: true
     ~/.tool-versions:
         path: asdf-tools-versions
+- shell:
+    - [sh bootstrap.sh, Running bootstrap script]
+-

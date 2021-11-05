@@ -33,6 +33,9 @@ cask 'iterm2'
 brew 'the_silver_searcher'
 brew 'fpp'
 brew 'reattach-to-user-namespace'
+brew 'tldr'
+brew 'gh'
+brew 'urlview'
 
 brew 'mas' # Mac App Store manager
 mas 'Todoist: To-Do List & Tasks', id: 585829637

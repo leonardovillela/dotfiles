@@ -10,10 +10,6 @@ brew update
 brew tap homebrew/bundle
 brew bundle
 
-mkdir $HOME/dev
-mv $PWD $HOME/dev
-cd $HOME/dev/dotfiles
-
 echo "Installing Oh My Zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 

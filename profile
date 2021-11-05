@@ -7,3 +7,4 @@ if [ -f ~/.profile_local ]; then
 fi
 
 source ~/.aliases.sh
+spaceship_vi_mode_enable

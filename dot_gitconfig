@@ -1,6 +1,9 @@
 [user]
-	name = Leonardo Villela
-	email = leonardo.villela37@gmail.com
+    name = Leonardo Villela
+    email = leonardo.villela37@gmail.com
+
+[include]
+   path = ~/.config/.git-delta/themes.gitconfig
 
 [core]
     pager = delta

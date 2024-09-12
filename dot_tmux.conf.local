@@ -29,3 +29,5 @@ set-window-option -g mode-keys vi
 setw -g mode-keys vi
 # bind-key -T vi-copy 'v' begin-selection
 # bind-key -T vi-copy 'y' copy-selection
+
+bind-key C-k send-keys -R C-l \; clear-history

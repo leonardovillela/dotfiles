@@ -1,6 +1,3 @@
-.oh-my-zsh/cache/**
-
 bootstrap.sh
 README.md
 Brewfile
-

@@ -106,6 +106,8 @@ autoload -U add-zsh-hook
 source ~/.profile
 autoload -Uz compinit && compinit -i
 
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
 bindkey -v
 
 eval "$(starship init zsh)"

@@ -1,4 +1,4 @@
-[".config/.git-delta"]
+[".config/git-delta/themes.gitconfig"]
     type = "file"
     url = "https://raw.githubusercontent.com/dandavison/delta/main/themes.gitconfig"
     refreshPeriod = "168h"

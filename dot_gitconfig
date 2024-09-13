@@ -3,7 +3,7 @@
     email = leonardo.villela37@gmail.com
 
 [include]
-   path = ~/.config/.git-delta/themes.gitconfig
+   path = ~/.config/git-delta/themes.gitconfig
 
 [core]
     pager = delta

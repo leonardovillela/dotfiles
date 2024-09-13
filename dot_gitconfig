@@ -16,6 +16,7 @@
     side-by-side = true
     syntax-theme = Dracula
     light = false
+    features = chameleon
 
 [merge]
     conflictstyle = diff3

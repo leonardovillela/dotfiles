@@ -5,6 +5,9 @@
 [include]
    path = ~/.config/git-delta/themes.gitconfig
 
+[init]
+    defaultBranch = main
+
 [core]
     pager = delta
 

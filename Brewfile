@@ -44,6 +44,8 @@ brew 'autoconf'
 brew 'automake'
 brew 'gpg'
 brew 'coreutils'
+brew 'btop'
+brew 'git-town'
 vscode "eamodio.gitlens"
 vscode "github.codespaces"
 vscode "github.copilot"

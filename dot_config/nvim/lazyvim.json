@@ -1,0 +1,15 @@
+{
+  "extras": [
+    "lazyvim.plugins.extras.lang.git",
+    "lazyvim.plugins.extras.lang.go",
+    "lazyvim.plugins.extras.lang.markdown",
+    "lazyvim.plugins.extras.lang.ruby",
+    "lazyvim.plugins.extras.lang.toml",
+    "lazyvim.plugins.extras.lang.yaml",
+    "lazyvim.plugins.extras.ui.mini-animate"
+  ],
+  "news": {
+    "NEWS.md": "10960"
+  },
+  "version": 7
+}

@@ -1,9 +1,12 @@
 export EDITOR=nvim
 
-code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
+code() { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $*; }
 
 if [ -f ~/.profile_local ]; then
   source ~/.profile_local
 fi
 
 source ~/.aliases.sh
+
+# Configure theme for FZF
+source ~/.config/fzf/tokyonight_night.sh

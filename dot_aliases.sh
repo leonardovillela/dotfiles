@@ -7,3 +7,4 @@ alias vim="nvim"
 alias cz=chezmoi
 alias ghcs="gh copilot suggest"
 alias ghce="gh copilot explain"
+alias tf="terraform"

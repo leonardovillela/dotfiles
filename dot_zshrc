@@ -114,6 +114,9 @@ autoload -Uz compinit && compinit -i
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
-bindkey -v
+# Set up Atuin 
+eval "$(atuin init zsh)"
 
+# Set up starship prompt
+bindkey -v
 eval "$(starship init zsh)"

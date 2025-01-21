@@ -8,3 +8,5 @@ alias cz=chezmoi
 alias ghcs="gh copilot suggest"
 alias ghce="gh copilot explain"
 alias tf="terraform"
+alias htop="btop"
+alias top="htop"

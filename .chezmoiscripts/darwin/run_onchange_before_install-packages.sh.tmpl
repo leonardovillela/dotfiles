@@ -35,10 +35,10 @@ fi
 cd "${script_dir}" || exit
 
 # Brewfile hashes (To rerun this script when Brewfile changes):
-# Brewfile:             {{ include "Brewfile" | sha256sum }}
 
 # Supress error message when running `brew bundle`
 # The error message is caused by packages that maybe installed by other means
-brew bundle --no-lock --file Brewfile || true
-
+brew bundle --no-lock --file=/dev/stdin <<EOF
+  {{ template "Brewfile.tmpl" . }}
+EOF
 {{ end -}}

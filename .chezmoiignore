@@ -1,4 +1,4 @@
-bootstrap.sh
+install.sh
 README.md
-Brewfile
 .editorconfig
+.oh-my-zsh/cache/**

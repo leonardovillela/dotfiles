@@ -1,8 +1,7 @@
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
-brew 'mas' # Mac App Store manager
-cask 'todoist'
 brew 'git-delta'
+brew 'atuin'
 brew 'bat'
 brew 'tmuxinator'
 brew 'chezmoi'
@@ -18,15 +17,9 @@ brew 'fpp'
 brew 'fzf'
 brew 'the_silver_searcher'
 cask 'bitwarden'
-cask 'dropbox'
-cask 'ghostty'
-cask 'alfred'
-cask 'rectangle'
 cask 'font-fira-code'
 brew 'zsh'
 brew 'neovim'
-cask 'spotify'
-cask 'visual-studio-code'
 brew 'autojump'
 brew 'asdf'
 brew 'tmux'
@@ -34,19 +27,32 @@ brew 'jq'
 brew 'curl'
 brew 'git'
 brew 'unzip'
+brew 'progress'
 brew 'unixodbc'
 brew 'libtool'
 brew 'libxslt'
 brew 'readline'
 brew 'libyaml'
 brew 'openssl'
-cask 'obsidian'
 brew 'autoconf'
 brew 'automake'
 brew 'gpg'
 brew 'coreutils'
 brew 'btop'
 brew 'git-town'
+
+# Only on macOS
+
+{{ if eq .chezmoi.os "darwin" }}
+brew 'mas' # Mac App Store manager
+cask 'todoist'
+cask 'dropbox'
+cask 'ghostty'
+cask 'alfred'
+cask 'rectangle'
+cask 'obsidian'
+cask 'spotify'
+cask 'visual-studio-code'
 vscode "eamodio.gitlens"
 vscode "github.codespaces"
 vscode "github.copilot"
@@ -65,3 +71,4 @@ vscode "sissel.shopify-liquid"
 vscode "vscodevim.vim"
 vscode "will-wow.vscode-alternate-file"
 vscode "editorconfig.editorconfig"
+{{ end }}

@@ -1,4 +1,3 @@
-{{- if (eq .chezmoi.os "darwin") -}}
 #!/bin/bash
 
 set -e pipefail
@@ -41,4 +40,3 @@ cd "${script_dir}" || exit
 brew bundle --no-lock --file=/dev/stdin <<EOF
   {{ template "Brewfile.tmpl" . }}
 EOF
-{{ end -}}

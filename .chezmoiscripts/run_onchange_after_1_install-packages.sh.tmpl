@@ -16,8 +16,6 @@ function banner {
   fi
 }
 
-banner "macOS package install"
-
 # Install Homebrew
 if [ ! "$(command -v brew)" ]; then
   echo "Installing Homebrew"
@@ -25,17 +23,24 @@ if [ ! "$(command -v brew)" ]; then
   export PATH="/usr/local/bin:/opt/homebrew/bin:$PATH"
 fi
 
-# Install packages needed
+{{ if eq .chezmoi.os "linux" }}
+test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
+{{ end }}
+
+
+{{ if eq .chezmoi.os "darwin" }}
+# Install macOS packages needed
 export PATH="/usr/local/bin:/opt/homebrew/bin:$PATH"
 if [ ! "$(command -v mas)" ]; then
   brew install mas
 fi
+{{ end }}
 
 cd "${script_dir}" || exit
 
-# Brewfile hashes (To rerun this script when Brewfile changes):
-
-# Supress error message when running `brew bundle`
+banner "macOS package install"
 # The error message is caused by packages that maybe installed by other means
 brew bundle --no-lock --file=/dev/stdin <<EOF
   {{ template "Brewfile.tmpl" . }}

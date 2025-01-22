@@ -3,6 +3,14 @@
   pager = "delta"
   exclude = ["scripts"]
 
+# [merge]
+#    command = "nvim"
+#    args = ["-d", "{{ "{{ .Destination }}" }}", "{{ "{{ .Source }}" }}", "{{ "{{ .Target }}" }}"]
+#
+
 [merge]
-    command = "nvim"
-    args = ["-d", "{{ "{{ .Destination }}" }}", "{{ "{{ .Source }}" }}", "{{ "{{ .Target }}" }}"]
+  command = "bash"
+  args = [
+    "-c",
+    "cp {{ "{{ .Target }} {{ .Target }}" }}.base && code --new-window --wait --merge {{ "{{ .Destination }} {{ .Target }} {{ .Target }}" }}.base {{ "{{ .Source }}" }}",
+  ]

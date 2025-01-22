@@ -19,6 +19,9 @@ setw -g mode-keys vi
 # bind-key -T vi-copy 'v' begin-selection
 # bind-key -T vi-copy 'y' copy-selection
 
+# Address vim mode switching delay (http://superuser.com/a/252717/65504)
+set -s escape-time 0
+
 bind-key C-k send-keys -R C-l \; clear-history
 
 # I use catppuccin status bar, so I disable the default .tmux bar
@@ -31,25 +34,68 @@ if-shell -b '[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]' \
 if-shell -b '[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]' \
     "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\\\'  'select-pane -l'"
 
-
-# Configure the catppuccin plugin
+# Status bar configuration
+set -g @plugin 'tmux-plugins/tmux-online-status'
 set -g @plugin 'tmux-plugins/tmux-cpu'
-set -g @catppuccin_flavor "mocha"
-set -g @catppuccin_window_status_style "rounded"
+set -g @plugin 'catppuccin/tmux'
 
-# Load catppuccin
-run ~/.config/tmux/plugins/catppuccin/tmux/catppuccin.tmux
-# For TPM, instead use `run ~/.config/tmux/plugins/tmux/catppuccin.tmux`
+# Configure Catppuccin
+set -g @catppuccin_flavor "macchiato"
+set -g @catppuccin_status_background "none"
+set -g @catppuccin_window_status_style "none"
+set -g @catppuccin_pane_status_enabled "off"
+set -g @catppuccin_pane_border_status "off"
 
-# Make the status line pretty and add some modules
-set -g status-right-length 100
-set -g status-left-length 200
+# Configure Online
+set -g @online_icon "ok"
+set -g @offline_icon "nok"
+
+# status left look and feel
+set -g status-left-length 100
 set -g status-left ""
+set -ga status-left "#{?client_prefix,#{#[bg=#{@thm_red},fg=#{@thm_bg},bold]  #S },#{#[bg=#{@thm_bg},fg=#{@thm_green}]  #S }}"
+set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]│"
+set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_maroon}]  #{pane_current_command} "
+set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]│"
+set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_blue}]  #{=/-32/...:#{s|$USER|~|:#{b:pane_current_path}}} "
+set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]#{?window_zoomed_flag,│,}"
+set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_yellow}]#{?window_zoomed_flag,  zoom ,}"
 
-set -g status-right "#{E:@catppuccin_status_application}"
-set -agF status-right "#{E:@catppuccin_status_cpu}"
-set -ag status-right "#{E:@catppuccin_status_session}"
-set -ag status-right "#{E:@catppuccin_status_uptime}"
+# status right look and feel
+set -g status-right-length 100
+set -g status-right ""
 
-run ~/.config/tmux/plugins/tmux-plugins/tmux-cpu/cpu.tmux
-# Or, if using TPM, just run TPM
+set -ga status-right "#{?#{e|>=:90,#{cpu_percentage}},#{#[bg=#{@thm_red},fg=#{@thm_bg}]},#{#[bg=#{@thm_bg},fg=#{@thm_pink}]}}   #{cpu_percentage} "
+set -ga status-right "#{?#{e|>=:90,#{ram_percentage}},#{#[bg=#{@thm_red},fg=#{@thm_bg}]},#{#[bg=#{@thm_bg},fg=#{@thm_pink}]}}   #{ram_percentage} "
+set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_overlay_0}, none]│"
+set -ga status-right "#[bg=#{@thm_bg}]#{?#{==:#{online_status},ok},#[fg=#{@thm_mauve}] 󰖩 on ,#[fg=#{@thm_red},bold]#[reverse] 󰖪 off }"
+set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_overlay_0}, none]│"
+set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_blue}]   #{hostname} "
+set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_overlay_0}, none]│"
+set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_blue}]  #{uptime_d}d #{uptime_h}h "
+
+# Configure Tmux
+set -g status-position top
+set -g status-style "bg=#{@thm_bg}"
+set -g status-justify "absolute-centre"
+
+# pane border look and feel
+setw -g pane-border-status top
+setw -g pane-border-format ""
+setw -g pane-active-border-style "bg=#{@thm_bg},fg=#{@thm_overlay_0}"
+setw -g pane-border-style "bg=#{@thm_bg},fg=#{@thm_surface_0}"
+setw -g pane-border-lines single
+
+# window look and feel
+set -wg automatic-rename on
+set -g automatic-rename-format "Window"
+
+set -g window-status-format " #I#{?#{!=:#{window_name},Window},: #W,} "
+set -g window-status-style "bg=#{@thm_bg},fg=#{@thm_rosewater}"
+set -g window-status-last-style "bg=#{@thm_bg},fg=#{@thm_peach}"
+set -g window-status-activity-style "bg=#{@thm_red},fg=#{@thm_bg}"
+set -g window-status-bell-style "bg=#{@thm_red},fg=#{@thm_bg},bold"
+set -gF window-status-separator "#[bg=#{@thm_bg},fg=#{@thm_overlay_0}]│"
+
+set -g window-status-current-format " #I#{?#{!=:#{window_name},Window},: #W,} "
+set -g window-status-current-style "bg=#{@thm_peach},fg=#{@thm_bg},bold"

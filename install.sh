@@ -4,6 +4,12 @@
 # -u: exit on unset variables
 set -eu
 
+if [ $CODESPACES ]; then
+  # If running on codespaces zsh is already installed and we make it the default shell.
+
+  ./.chezmoiscripts/run_once_chsh.sh
+fi
+
 if ! chezmoi="$(command -v chezmoi)"; then
   bin_dir="${HOME}/.local/bin"
   chezmoi="${bin_dir}/chezmoi"

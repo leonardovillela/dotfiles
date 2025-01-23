@@ -1,3 +1,6 @@
+# Set default shell to zsh
+set -g default-shell /bin/zsh
+
 # VI stuff below
 
 # Smart pane switching with awareness of Vim splits.

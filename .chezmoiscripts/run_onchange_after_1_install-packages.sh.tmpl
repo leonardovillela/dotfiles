@@ -42,6 +42,6 @@ cd "${script_dir}" || exit
 
 banner "macOS package install"
 # The error message is caused by packages that maybe installed by other means
-brew bundle --no-lock --file=/dev/stdin <<EOF
+brew bundle --file=/dev/stdin <<EOF
   {{ template "Brewfile.tmpl" . }}
 EOF

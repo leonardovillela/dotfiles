@@ -6,6 +6,7 @@ alias catp="bat"
 alias vim="nvim"
 alias cz=chezmoi
 alias czc="cz cd"
+alias cze="cz edit"
 alias czs="cz status"
 alias czd="cz diff"
 alias cza="cz apply"

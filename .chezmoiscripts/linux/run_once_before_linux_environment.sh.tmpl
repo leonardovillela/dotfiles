@@ -1,0 +1,35 @@
+{{ if (eq .chezmoi.os "linux") -}}
+
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+echo "Setting up Linux-specific environment"
+
+# Ensure ASDF is properly configured in shell profiles
+ASDF_INIT='. "$HOME/.asdf/asdf.sh"'
+ASDF_COMPLETIONS='. "$HOME/.asdf/completions/asdf.bash"'
+
+# Add ASDF to .bashrc if it exists and doesn't already contain it
+if [ -f "$HOME/.bashrc" ] && [ ! -f "$HOME/.bash_profile" ]; then
+  if ! grep -q "asdf.sh" "$HOME/.bashrc" 2>/dev/null; then
+    echo "" >> "$HOME/.bashrc"
+    echo "# ASDF version manager" >> "$HOME/.bashrc"
+    echo "$ASDF_INIT" >> "$HOME/.bashrc"
+    echo "$ASDF_COMPLETIONS" >> "$HOME/.bashrc"
+  fi
+fi
+
+# Add ASDF to .zshrc if zsh is available and it doesn't already contain it
+if command -v zsh >/dev/null 2>&1; then
+  if [ -f "$HOME/.zshrc" ] && ! grep -q "asdf.sh" "$HOME/.zshrc" 2>/dev/null; then
+    echo "" >> "$HOME/.zshrc"
+    echo "# ASDF version manager" >> "$HOME/.zshrc"
+    echo "$ASDF_INIT" >> "$HOME/.zshrc"
+    echo "$ASDF_COMPLETIONS" >> "$HOME/.zshrc"
+  fi
+fi
+
+echo "Linux environment setup complete"
+
+{{ end }}

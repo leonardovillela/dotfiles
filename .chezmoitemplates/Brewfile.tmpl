@@ -24,8 +24,14 @@ brew 'progress'
 brew 'btop'
 brew 'redis'
 
-# Only on macOS
+# Linux-specific packages
+{{ if eq .chezmoi.os "linux" }}
+brew 'gcc'
+brew 'chezmoi'
+brew 'gh'
+{{ end }}
 
+# macOS-specific packages
 {{ if eq .chezmoi.os "darwin" }}
 brew 'mas' # Mac App Store manager
 brew 'fastfetch'

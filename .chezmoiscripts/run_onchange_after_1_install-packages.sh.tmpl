@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e pipefail
+set -euo pipefail
 
 script_dir="{{ .chezmoi.sourceDir }}"
 
@@ -24,11 +24,15 @@ if [ ! "$(command -v brew)" ]; then
 fi
 
 {{ if eq .chezmoi.os "linux" }}
+# Set up Linux Homebrew (Linuxbrew) environment
 test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
 test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
+# Add to shell configuration if not already present
+if ! grep -q "linuxbrew" ~/.zshrc 2>/dev/null; then
+  echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
+fi
+banner "Linux package install"
 {{ end }}
-
 
 {{ if eq .chezmoi.os "darwin" }}
 # Install macOS packages needed
@@ -36,11 +40,11 @@ export PATH="/usr/local/bin:/opt/homebrew/bin:$PATH"
 if [ ! "$(command -v mas)" ]; then
   brew install mas
 fi
+banner "macOS package install"
 {{ end }}
 
 cd "${script_dir}" || exit
 
-banner "macOS package install"
 # The error message is caused by packages that maybe installed by other means
 brew bundle --file=/dev/stdin <<EOF
   {{ template "Brewfile.tmpl" . }}

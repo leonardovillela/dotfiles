@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+{{ if eq .chezmoi.os "darwin" -}}
+# Configure macOS Dock with preferred applications
+# This script runs only once during initial bootstrap
+
+echo "Configuring Dock..."
+
+# Remove all apps from the Dock
+dockutil --remove all --no-restart
+
+# Add apps in the desired order
+dockutil --add "/Applications/Google Chrome.app" --no-restart
+dockutil --add "/Applications/Spotify.app" --no-restart
+dockutil --add "/Applications/Visual Studio Code - Insiders.app" --no-restart
+dockutil --add "/Applications/Ghostty.app" --no-restart
+dockutil --add "/Applications/Bitwarden.app" --no-restart
+
+# Restart Dock to apply changes
+killall Dock
+
+echo "Dock configuration complete!"
+
+{{ end -}}

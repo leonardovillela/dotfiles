@@ -17,9 +17,17 @@
 [delta]
     navigate = true    # use n and N to move between diff sections
     side-by-side = true
-    syntax-theme = Dracula
-    light = false
-    features = chameleon
+    dark = true
+    syntax-theme = TwoDark
+    line-numbers = true
+    # tokyonight-inspired colors
+    minus-style = syntax "#37222c"
+    minus-emph-style = syntax "#713137"
+    plus-style = syntax "#20303b"
+    plus-emph-style = syntax "#2c5a66"
+    line-numbers-minus-style = "#914c54"
+    line-numbers-plus-style = "#449dab"
+    line-numbers-zero-style = "#3b4261"
 
 [merge]
     conflictstyle = diff3

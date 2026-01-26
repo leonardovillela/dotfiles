@@ -1,3 +1,4 @@
+export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR=nvim
 
 code() { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCodeInsiders" --args $*; }

@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+{{ if eq .chezmoi.os "darwin" -}}
+# Configure Night Shift to run from sunset to sunrise
+
+echo "Configuring Night Shift..."
+
+# Check if nightlight CLI is available
+if command -v nightlight &> /dev/null; then
+    # Enable sunset to sunrise schedule
+    nightlight schedule start
+    
+    # Set a comfortable temperature (50 is a good default, adjust 0-100)
+    nightlight temp 50
+    
+    echo "Night Shift configured: sunset to sunrise, temperature 50"
+else
+    echo "Warning: nightlight CLI not found. Please run 'brew install smudge/smudge/nightlight' first."
+fi
+
+{{ end -}}

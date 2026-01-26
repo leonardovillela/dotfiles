@@ -34,8 +34,5 @@
   type = "file"
   url = "https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/fzf/tokyonight_night.sh"
   refreshPeriod = "168h"
-[".config/gitui/theme.ron"]
-  type = "file"
-  url = "https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/gitui/tokyonight_night.ron"
-  refreshPeriod = "168h"
+
 

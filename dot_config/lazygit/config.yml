@@ -1,3 +1,4 @@
+# Theme: tokyonight_night from https://github.com/folke/tokyonight.nvim/blob/main/extras/lazygit/tokyonight_night.yml
 gui:
   nerdFontsVersion: "3"
   theme:
@@ -25,3 +26,8 @@ gui:
       - "#db4b4b"
     defaultFgColor:
       - "#c0caf5"
+
+git:
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never

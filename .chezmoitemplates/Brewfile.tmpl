@@ -30,11 +30,11 @@ brew 'chezmoi'
 brew 'eza'
 brew 'lazygit'
 brew 'opencode'
+brew 'cookcli'
 
 # Only on macOS
 
 {{ if eq .chezmoi.os "darwin" }}
-tap 'cooklang/tap'
 brew 'mas' # Mac App Store manager
 brew 'unixodbc'
 brew 'libtool'

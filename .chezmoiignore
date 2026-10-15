@@ -3,3 +3,5 @@ README.md
 .editorconfig
 .oh-my-zsh/cache/**
 .stuff*
+.ssh/config.d/
+.ssh/config.bak-*

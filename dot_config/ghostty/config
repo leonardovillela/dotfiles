@@ -1,2 +1,3 @@
 font-family = "Fira Code Retina"
 theme = tokyonight
+macos-option-as-alt = left

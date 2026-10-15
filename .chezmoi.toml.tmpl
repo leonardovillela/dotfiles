@@ -1,5 +1,9 @@
+{{- $work := promptBoolOnce . "work" "Is this a work machine" -}}
+
+[data]
+  work = {{ $work }}
+
 [diff]
-  command = "delta"
   pager = "delta"
   exclude = ["scripts"]
 

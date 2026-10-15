@@ -30,7 +30,9 @@ brew 'chezmoi'
 brew 'eza'
 brew 'lazygit'
 brew 'opencode'
+tap  'cooklang/tap'
 brew 'cookcli'
+brew 'apm'
 
 # Only on macOS
 
@@ -51,7 +53,6 @@ brew 'docker-compose'
 brew 'docker'
 brew 'reattach-to-user-namespace'
 brew 'dockutil'
-brew 'smudge/smudge/nightlight'
 brew 'cooklang/tap/cookcli'
 cask 'todoist-app'
 cask 'ghostty'
@@ -65,5 +66,9 @@ cask 'font-fira-code'
 cask 'bitwarden'
 cask 'keymapp'
 cask 'hiddenbar'
+cask 'azure-cli'
+{{- /* Chrome is company-managed on work machines */}}
+{{- if not (index . "work") }}
 cask 'google-chrome'
+{{- end }}
 {{ end }}

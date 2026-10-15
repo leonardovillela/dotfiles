@@ -31,6 +31,11 @@ chezmoi init --apply leonardovillela/dotfiles
 ### Apps (macOS)
 - Ghostty, Raycast, Rectangle, Obsidian, Spotify, VS Code, Bitwarden, etc.
 
+## Work machines
+
+`chezmoi init` asks "Is this a work machine" once per machine. On work machines, company-managed apps
+(Google Chrome) are skipped.
+
 ## Structure
 
 ```
@@ -44,6 +49,6 @@ chezmoi init --apply leonardovillela/dotfiles
 ├── dot_tmux.conf.local# Tmux customization
 ├── dot_gitconfig      # Git configuration
 ├── dot_aliases.sh     # Shell aliases
-├── private_dot_ssh/   # SSH config
+├── private_dot_ssh/   # SSH config (work hosts in ~/.ssh/config.d/, not synced)
 └── .chezmoiscripts/   # Setup scripts
 ```

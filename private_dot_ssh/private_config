@@ -1,4 +1,7 @@
+Include ~/.ssh/config.d/*
+
 Host *
   AddKeysToAgent yes
   UseKeychain yes
   IdentityFile ~/.ssh/id_ed25519
+  SetEnv TERM=xterm-256color

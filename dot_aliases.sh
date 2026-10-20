@@ -18,6 +18,7 @@ alias htop="btop"
 alias tf="terraform"
 alias top="htop"
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+alias ghc="gh copilot"
 
 # ripgrep (modern grep replacement)
 alias grep="rg"

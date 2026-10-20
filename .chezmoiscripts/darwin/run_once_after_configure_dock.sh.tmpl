@@ -9,12 +9,24 @@ echo "Configuring Dock..."
 # Remove all apps from the Dock
 dockutil --remove all --no-restart
 
-# Add apps in the desired order
-dockutil --add "/Applications/Google Chrome.app" --no-restart
-dockutil --add "/Applications/Spotify.app" --no-restart
-dockutil --add "/Applications/Visual Studio Code - Insiders.app" --no-restart
-dockutil --add "/Applications/Ghostty.app" --no-restart
-dockutil --add "/Applications/Bitwarden.app" --no-restart
+# Add apps in the desired order (Finder is always first and can't be moved)
+apps=(
+  "/Applications/Visual Studio Code.app"
+  "/Applications/Ghostty.app"
+  "/Applications/Spotify.app"
+  "/Applications/GitHub Copilot.app"
+  "/Applications/Slack.app"
+  "/Applications/Todoist.app"
+  "/Applications/Bitwarden.app"
+  "/Applications/Google Chrome.app"
+)
+for app in "${apps[@]}"; do
+  if [ -d "$app" ]; then
+    dockutil --add "$app" --no-restart
+  else
+    echo "Skipping $(basename "$app" .app): not installed"
+  fi
+done
 
 # Restart Dock to apply changes
 killall Dock

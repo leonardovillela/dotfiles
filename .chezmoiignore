@@ -5,3 +5,9 @@ README.md
 .stuff*
 .ssh/config.d/
 .ssh/config.bak-*
+
+# Managed by the private ai-dotfiles chezmoi instance (czai)
+.apm
+.apm/**
+.copilot
+.copilot/**

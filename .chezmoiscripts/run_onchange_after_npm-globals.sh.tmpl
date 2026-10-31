@@ -1,0 +1,19 @@
+#!/bin/bash
+# dot_default-npm-packages hash: {{ include "dot_default-npm-packages" | sha256sum }}
+
+set -euo pipefail
+
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
+if ! command -v npm >/dev/null 2>&1; then
+  echo "npm not found, skipping global npm packages"
+  exit 0
+fi
+
+packages=$(grep -vE '^\s*(#|$)' "$HOME/.default-npm-packages" || true)
+if [ -n "$packages" ]; then
+  echo "Installing global npm packages: $packages"
+  # shellcheck disable=SC2086
+  npm install -g $packages
+  asdf reshim nodejs || true
+fi

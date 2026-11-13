@@ -20,6 +20,7 @@ chezmoi init --apply leonardovillela/dotfiles
 ### Terminal Tools
 - **neovim** with LazyVim
 - **tmux** with gpakosz config
+- **herdr** (trial) with tmux-style keybindings, for AI coding agents
 - **lazygit** with delta integration and tokyonight theme
 - **bat**, **eza**, **ripgrep**, **jq**, **fzf**
 - **git-delta** for beautiful diffs
@@ -42,6 +43,7 @@ chezmoi init --apply leonardovillela/dotfiles
 .
 ├── dot_config/
 │   ├── ghostty/       # Terminal config
+│   ├── herdr/         # herdr config, ported from tmux
 │   ├── lazygit/       # Lazygit + delta + tokyonight
 │   ├── nvim/          # Neovim/LazyVim
 │   └── opencode/      # OpenCode AI config

@@ -1,0 +1,134 @@
+# herdr config, ported from my tmux setup (oh-my-tmux + ~/.tmux.conf.local).
+# Defaults: `herdr --default-config`. Validate: `herdr config check`.
+# Changing settings in herdr's UI rewrites this file: run `chezmoi re-add` to keep them.
+
+onboarding = false
+
+[theme]
+# Closest built-in to tmux's catppuccin macchiato (herdr ships mocha).
+name = "catppuccin"
+
+[keys]
+# tmux C-b plus oh-my-tmux C-a. Pressing the prefix twice sends it to the pane.
+prefix = ["ctrl+b", "ctrl+a"]
+
+# Panes: oh-my-tmux hjkl move, HJKL resize, < > swap, + maximize; tmux arrows, ; last pane.
+focus_pane_left = ["prefix+h", "prefix+left"]
+focus_pane_down = ["prefix+j", "prefix+down"]
+focus_pane_up = ["prefix+k", "prefix+up"]
+focus_pane_right = ["prefix+l", "prefix+right"]
+resize_pane_left = "prefix+shift+h"
+resize_pane_down = "prefix+shift+j"
+resize_pane_up = "prefix+shift+k"
+resize_pane_right = "prefix+shift+l"
+swap_pane_left = "prefix+<"
+swap_pane_right = "prefix+>"
+swap_pane_up = "prefix+{"
+swap_pane_down = "prefix+}"
+split_vertical = ["prefix+v", "prefix+_", "prefix+percent"]
+split_horizontal = ["prefix+minus", "prefix+double_quote"]
+zoom = ["prefix+z", "prefix+plus"]
+# Stands in for oh-my-tmux Tab (last-window) and BTab (last session): herdr has no
+# last tab/workspace action, but last_pane jumps back across tabs and workspaces.
+last_pane = ["prefix+tab", "prefix+shift+tab", "prefix+semicolon"]
+cycle_pane_next = ""
+cycle_pane_previous = ""
+copy_mode = ["prefix+[", "prefix+enter"]
+clear_pane = "prefix+ctrl+k"
+resize_mode = "prefix+shift+r"
+edit_scrollback = "prefix+shift+e"
+
+# Tabs (tmux windows): oh-my-tmux C-h/C-l previous/next, C-S-H/C-S-L move; n/p stay unbound.
+previous_tab = "prefix+ctrl+h"
+next_tab = "prefix+ctrl+l"
+move_tab_previous = "prefix+ctrl+shift+h"
+move_tab_next = "prefix+ctrl+shift+l"
+rename_tab = ["prefix+comma", "prefix+shift+t"]
+close_tab = ["prefix+ampersand", "prefix+shift+x"]
+
+# Workspaces (tmux sessions): oh-my-tmux C-c new, C-f find; tmux s, $, ( ), d, r.
+new_workspace = ["prefix+ctrl+c", "prefix+shift+n"]
+previous_workspace = "prefix+("
+next_workspace = "prefix+)"
+goto = ["prefix+ctrl+f", "prefix+g"]
+workspace_picker = ["prefix+s", "prefix+w"]
+rename_workspace = ["prefix+$", "prefix+shift+w"]
+detach = ["prefix+d", "prefix+q"]
+reload_config = "prefix+r"
+settings = "prefix+shift+s"
+
+# oh-my-tmux prefix+e: edit the live config, sync it back to chezmoi, reload.
+# Edits the live file (not `chezmoi edit`) because herdr's settings panel also
+# writes it; re-add keeps the chezmoi source in sync without overwrite prompts.
+[[keys.command]]
+key = "prefix+e"
+type = "popup"
+command = "${EDITOR:-nvim} ~/.config/herdr/config.toml && chezmoi re-add ~/.config/herdr/config.toml && \"$HERDR_BIN_PATH\" server reload-config"
+description = "edit config"
+width = "90%"
+height = "90%"
+
+# oh-my-tmux prefix+U / prefix+F: urlview / fpp over the pane's output.
+[[keys.command]]
+key = "prefix+shift+u"
+type = "popup"
+command = "\"$HERDR_BIN_PATH\" pane read \"$HERDR_ACTIVE_PANE_ID\" --source recent-unwrapped --lines 1000 | urlview"
+description = "urlview"
+width = "80%"
+height = "80%"
+
+[[keys.command]]
+key = "prefix+shift+f"
+type = "popup"
+command = "\"$HERDR_BIN_PATH\" pane read \"$HERDR_ACTIVE_PANE_ID\" --source recent-unwrapped --lines 1000 | fpp"
+description = "fpp"
+width = "90%"
+height = "90%"
+
+# Vim-aware C-h/j/k/l from ~/.tmux.conf.local.
+[[keys.command]]
+key = "ctrl+h"
+type = "shell"
+command = "~/.config/herdr/navigate.sh left ctrl+h"
+description = "pane left (vim-aware)"
+
+[[keys.command]]
+key = "ctrl+j"
+type = "shell"
+command = "~/.config/herdr/navigate.sh down ctrl+j"
+description = "pane down (vim-aware)"
+
+[[keys.command]]
+key = "ctrl+k"
+type = "shell"
+command = "~/.config/herdr/navigate.sh up ctrl+k"
+description = "pane up (vim-aware)"
+
+[[keys.command]]
+key = "ctrl+l"
+type = "shell"
+command = "~/.config/herdr/navigate.sh right ctrl+l"
+description = "pane right (vim-aware)"
+
+[ui]
+# From herdr onboarding.
+status_indicators = "symbols"
+# tmux-like: create tabs without a name prompt, single-line splitters, status on top.
+prompt_new_tab_name = false
+pane_gaps = false
+pane_outer_borders = false
+tab_bar_position = "top"
+# tmux status-right: cpu, ram, online, hostname, uptime.
+tab_bar_right_separator = " │ "
+tab_bar_right = [
+  { type = "zoom" },
+  { type = "command", command = "~/.config/herdr/status.sh cpu", interval_seconds = 5, timeout_seconds = 5 },
+  { type = "command", command = "~/.config/herdr/status.sh ram", interval_seconds = 5 },
+  { type = "command", command = "~/.config/herdr/status.sh online", interval_seconds = 30, timeout_seconds = 5 },
+  { type = "command", command = "~/.config/herdr/status.sh host", interval_seconds = 3600 },
+  { type = "command", command = "~/.config/herdr/status.sh uptime", interval_seconds = 60 },
+]
+
+# From herdr onboarding: agent notifications as macOS notifications.
+[ui.toast]
+delivery = "herdr"
